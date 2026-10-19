@@ -42,8 +42,8 @@ Acceptance: fixture tests cover additions, removals, updates, ordering changes, 
 
 ## Phase 3 — Reliability toolkit
 
-- Wi-Fi recovery: distinguish gateway, DNS and upstream outages; add backoff and safe reset limits.
-- UI automation: use window-relative geometry and DPI-aware coordinates; add focus assertions, per-step checks and emergency stop.
+- Wi-Fi recovery: initial layered gateway/upstream/DNS diagnostic and capped opt-in resets implemented (`windows-wifi-auto-recovery`); remaining: broader live-network tests and alert routing.
+- UI automation: read-only display geometry and foreground-window DPI inspector implemented (`windows-ui-sanity-tools`); remaining: window-relative click targeting, action recorder, per-step checks and emergency stop.
 - Rebuild assistant: initial local inventory, WinGet export and restoration checklist implemented (`scripts/09-Rebuild-Inventory.ps1`); future: selected application configuration inventories, verify imports and restore testing. No unattended import by default.
 - Disk inspector: health indicators when provided by hardware, directory growth history and versioned quarantine for duplicates.
 - Notifications: Windows events/logging first; opt-in Home Assistant routing with throttling.
