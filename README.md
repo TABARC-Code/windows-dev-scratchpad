@@ -81,3 +81,18 @@ Additional launcher commands:
 ```
 
 The network command performs **one diagnostic pass only**. It does not reset network adapters. The UI command reports screen geometry and the foreground window without changing anything.
+
+
+## Weekly privacy maintenance
+
+Use scripts/10-Privacy-Maintenance.ps1 for a dry-run preview of current-user Recent shortcuts, Shell recent-use records and current clipboard. Add -Apply to perform cleanup; add -IncludeThumbnails and -AttemptClipboardHistory for optional, best-effort extras.
+
+Install an ordinary current-user weekly scheduled task with:
+
+    .\scripts\11-Install-Privacy-Weekly.ps1 -Install -Day Sunday -Time '19:00'
+
+Remove it with:
+
+    .\scripts\11-Install-Privacy-Weekly.ps1 -Uninstall
+
+Prefetch, Wi-Fi profiles, USB history and pinned Jump List databases are not modified. Read docs/PRIVACY-MAINTENANCE.md before enabling the task.
