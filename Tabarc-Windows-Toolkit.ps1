@@ -2,7 +2,7 @@
 # One entry point for standalone Windows utilities stored in sibling repositories.
 [CmdletBinding()]
 param(
-  [ValidateSet('list','status','snapshot','changes','emergency','eventlog','port')][string]$Command = 'list',
+  [ValidateSet('list','status','snapshot','changes','emergency','eventlog','port','rebuild')][string]$Command = 'list',
   [string]$RepositoriesRoot = '',
   [string]$Old = '',
   [string]$New = '',
@@ -26,6 +26,7 @@ $catalogue = [ordered]@{
   'emergency-dump' = @('windows-emergency-toolkit','Invoke-Emergency-Dump.ps1')
   'event-log-diff' = @('windows-eventlog-diff','EventLog-Diff.ps1')
   'port-owner' = @('windows-port-warden','Who-Owns-Port.ps1')
+  'rebuild-inventory' = @('windows-dev-scratchpad','scripts/09-Rebuild-Inventory.ps1')
 }
 
 function Script-Path([string]$id) {
@@ -71,6 +72,9 @@ switch ($Command) {
   }
   'eventlog' {
     Run-Utility 'event-log-diff' @('-LogName',$LogName)
+  }
+  'rebuild' {
+    Run-Utility 'rebuild-inventory'
   }
   'port' {
     if ($Port -lt 1) { throw 'The port command requires -Port between 1 and 65535.' }
