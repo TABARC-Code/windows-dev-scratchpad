@@ -2,12 +2,13 @@
 # One entry point for standalone Windows utilities stored in sibling repositories.
 [CmdletBinding()]
 param(
-  [ValidateSet('list','status','snapshot','changes','emergency','eventlog','port','rebuild')][string]$Command = 'list',
+  [ValidateSet('list','status','snapshot','changes','emergency','eventlog','port','rebuild','network','ui')][string]$Command = 'list',
   [string]$RepositoriesRoot = '',
   [string]$Old = '',
   [string]$New = '',
   [ValidateSet('System','Application','Security')][string]$LogName = 'System',
-  [ValidateRange(0,65535)][int]$Port = 0
+  [ValidateRange(0,65535)][int]$Port = 0,
+  [string]$AdapterName = 'Wi-Fi'
 )
 
 Set-StrictMode -Version Latest
@@ -27,6 +28,8 @@ $catalogue = [ordered]@{
   'event-log-diff' = @('windows-eventlog-diff','EventLog-Diff.ps1')
   'port-owner' = @('windows-port-warden','Who-Owns-Port.ps1')
   'rebuild-inventory' = @('windows-dev-scratchpad','scripts/09-Rebuild-Inventory.ps1')
+  'network-check' = @('windows-wifi-auto-recovery','Auto-Recovery.ps1')
+  'ui-layout' = @('windows-ui-sanity-tools','Get-UiEnvironment.ps1')
 }
 
 function Script-Path([string]$id) {
@@ -75,6 +78,12 @@ switch ($Command) {
   }
   'rebuild' {
     Run-Utility 'rebuild-inventory'
+  }
+  'network' {
+    Run-Utility 'network-check' @('-AdapterName',$AdapterName,'-Once')
+  }
+  'ui' {
+    Run-Utility 'ui-layout'
   }
   'port' {
     if ($Port -lt 1) { throw 'The port command requires -Port between 1 and 65535.' }
