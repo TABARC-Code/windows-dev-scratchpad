@@ -70,3 +70,14 @@ See `docs/WORKPLAN.md` for implemented and proposed work.
 ```
 
 This is **not** a full Windows backup and does not restore data, credentials or application settings. Its reports contain potentially identifiable system details; keep them local and review before sharing.
+
+
+Additional launcher commands:
+
+
+```powershell
+.\Tabarc-Windows-Toolkit.ps1 -Command network -AdapterName 'Wi-Fi'
+.\Tabarc-Windows-Toolkit.ps1 -Command ui
+```
+
+The network command performs **one diagnostic pass only**. It does not reset network adapters. The UI command reports screen geometry and the foreground window without changing anything.
