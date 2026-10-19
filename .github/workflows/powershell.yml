@@ -43,3 +43,9 @@ jobs:
       - name: Test rebuild inventory in PowerShell 7
         shell: pwsh
         run: .\tests\Rebuild-Inventory.Smoke.ps1
+      - name: Test privacy maintenance on Windows PowerShell 5.1
+        shell: powershell
+        run: .\tests\Privacy-Maintenance.Smoke.ps1
+      - name: Test privacy maintenance on PowerShell 7
+        shell: pwsh
+        run: .\tests\Privacy-Maintenance.Smoke.ps1
