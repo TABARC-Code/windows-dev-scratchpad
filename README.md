@@ -37,3 +37,22 @@ Sometimes Python, if you choose the serve scripts.
 ```
 
 If you’re expecting perfection: you’re new here.
+
+
+## Windows Toolkit Launcher
+
+`Tabarc-Windows-Toolkit.ps1` gives a single entry point for selected standalone Windows utilities. Clone the repositories as sibling folders, or pass the directory containing them with `-RepositoriesRoot`.
+
+
+```powershell
+.\Tabarc-Windows-Toolkit.ps1 -Command list
+.\Tabarc-Windows-Toolkit.ps1 -Command status
+.\Tabarc-Windows-Toolkit.ps1 -Command snapshot
+.\Tabarc-Windows-Toolkit.ps1 -Command changes -Old C:\snapshots\old.json -New C:\snapshots\new.json
+.\Tabarc-Windows-Toolkit.ps1 -Command eventlog -LogName System
+.\Tabarc-Windows-Toolkit.ps1 -Command port -Port 8000
+```
+
+The optional `emergency` command creates a diagnostic archive; review it before sharing. The launcher does not download or install missing tools or escalate privileges.
+
+See `docs/WORKPLAN.md` for implemented and proposed work.
