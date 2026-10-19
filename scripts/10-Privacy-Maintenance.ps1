@@ -175,7 +175,7 @@ $report = [pscustomobject]@{
 }
 
 foreach ($item in $results) {
-  Write-Host ("{0}: {1} ({2}) — {3}" -f $item.area,$item.status,$item.count,$item.note)
+  Write-Host ("{0}: {1} ({2}) - {3}" -f $item.area,$item.status,$item.count,$item.note)
 }
 
 if (-not $dryRun -and $ReportPath) {
