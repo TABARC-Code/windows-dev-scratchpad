@@ -22,8 +22,8 @@ $uninstallKeys = @(
 $apps = @()
 foreach ($key in $uninstallKeys) {
   $apps += @(Get-ItemProperty -Path $key -ErrorAction SilentlyContinue |
-    Where-Object { $_.DisplayName } |
-    Select-Object @{n='name';e={$_.DisplayName}},@{n='version';e={$_.DisplayVersion}},@{n='publisher';e={$_.Publisher}})
+    Where-Object { $_.PSObject.Properties['DisplayName'] -and $_.DisplayName } |
+    Select-Object @{n='name';e={$_.DisplayName}},@{n='version';e={if ($_.PSObject.Properties['DisplayVersion']) { $_.DisplayVersion } else { $null }}},@{n='publisher';e={if ($_.PSObject.Properties['Publisher']) { $_.Publisher } else { $null }}})
 }
 $apps = @($apps | Sort-Object name,version -Unique)
 
