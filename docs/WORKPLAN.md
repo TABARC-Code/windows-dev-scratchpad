@@ -67,3 +67,12 @@ Acceptance: each integration can be disabled without impairing standalone operat
 4. Use parameter validation, precise error codes, bounded retries and clear operator output.
 5. Test both scripts and README examples against actual files.
 6. Document limitations and verified tests accurately.
+
+
+## Weekly privacy housekeeping
+
+Implemented: read-only preview and opt-in current-user cleanup of Recent shortcut entries, Shell usage records and current clipboard. Optional thumbnail and clipboard-history operations are best-effort and reported as such. A Task Scheduler installer creates/removes a weekly interactive current-user task. Fixture tests run on Windows PowerShell 5.1 and 7.
+
+Deliberately excluded: Prefetch deletion, Wi-Fi profile removal, USB registry history purging and deletion of pinned Jump List databases. These are not suitable defaults for recurring unattended maintenance.
+
+See docs/PRIVACY-MAINTENANCE.md. Future improvements: non-pinned clipboard history reliability across supported Windows versions, diagnostic dry-run audit of cache sizes, and a GUI settings panel.
