@@ -56,3 +56,17 @@ If you’re expecting perfection: you’re new here.
 The optional `emergency` command creates a diagnostic archive; review it before sharing. The launcher does not download or install missing tools or escalate privileges.
 
 See `docs/WORKPLAN.md` for implemented and proposed work.
+
+
+## Windows Rebuild Inventory
+
+`scripts/09-Rebuild-Inventory.ps1` creates a local inventory of installed software, OS and hardware details, storage volumes and optionally network configuration. Where WinGet is available, it also exports a package list for later review.
+
+
+```powershell
+.\scripts\09-Rebuild-Inventory.ps1 -SkipWinGet
+.\scripts\09-Rebuild-Inventory.ps1 -OutRoot 'D:\MyInventory'
+.\Tabarc-Windows-Toolkit.ps1 -Command rebuild
+```
+
+This is **not** a full Windows backup and does not restore data, credentials or application settings. Its reports contain potentially identifiable system details; keep them local and review before sharing.
